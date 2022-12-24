@@ -3,15 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
     public function create() {
-        return view('createBook');
+
+        $categories = Category::all();
+
+        return view('createBook', compact('categories'));
     }
 
     public function store(Request $request) {
+
+        $validated = $request->validate([
+            'Judul' => 'required|unique:books|min:5|max:255',
+            'Author' => 'required|min:5|max:255',
+            'PublishDate' => 'required|date',
+            'Stock' => 'required|numeric|min:1',
+            'Image' => 'required|mimes:jpg,png,jpeg,pdf'
+        ]);
 
         $extension = $request->file('Image')->getClientOriginalExtension();
         $filename = $request->Judul . '_' . $request->Author . '.' . $extension;
@@ -22,7 +34,8 @@ class BookController extends Controller
             'Author' => $request->Author,
             'PublishDate' => $request->PublishDate,
             'Stock' => $request->Stock,
-            'Image' => $filename
+            'Image' => $filename,
+            'category_id' => $request->category
         ]);
 
         return redirect('/home');

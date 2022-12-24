@@ -4,6 +4,7 @@
 
 @section('body')
 
+<a href="{{route('create')}}" class="btn btn-primary">Create Book</a>
 
 @foreach ($books as $book)
     <div class="card" style="margin: 6rem">

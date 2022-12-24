@@ -14,6 +14,12 @@ class Book extends Model
         'Author',
         'PublishDate',
         'Stock',
-        'Image'
+        'Image',
+        'category_id'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
