@@ -13,6 +13,7 @@ class Book extends Model
         'Judul',
         'Author',
         'PublishDate',
-        'Stock'
+        'Stock',
+        'Image'
     ];
 }
