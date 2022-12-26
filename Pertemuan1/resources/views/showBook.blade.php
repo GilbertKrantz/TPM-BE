@@ -11,6 +11,7 @@
         <h6 class="card-subtitle mb-2 text-muted">{{$books->Author}}</h6>
         <p class="card-text">{{$books->PublishDate}}</p>
         <p class="card-text">{{$books->Stock}}</p>
+        <p class="card-text">{{$books->category->name}}</p>
         <a class="btn btn-primary" href="{{route('home')}}">Back</a>
     </div>
 </div>
